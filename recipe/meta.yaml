@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/speedtest-cli-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/speedtest-cli-{{ version }}.tar.gz
   sha256: 5e2773233cedb5fa3d8120eb7f97bcc4974b5221b254d33ff16e2f1d413d90f0
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - speedtest=speedtest:main
@@ -20,10 +20,10 @@ build:
 
 requirements:
   host:
-    - python >=3.1
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.1
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -34,6 +34,7 @@ test:
     - speedtest-cli --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/sivel/speedtest-cli
